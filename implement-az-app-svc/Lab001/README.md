@@ -1,23 +1,24 @@
-###Lab Prerequisites
+### Lab Prerequisites
 In order to complete this lab, you will need the following:
 - Microsoft Edge/Chrome/Firefox
 - File Explorer
 - Terminal
 - Visual Studio Code
 
-####Lab Scenario
+#### Lab Scenario
 In this lab, you will explore how to create a web application on Azure by using the PaaS model. After the web application is created, you will learn how to upload existing web application files by using the Apache Kudu zip deployment option. You will then view and test the newly deployed web application.
 
 
-###Exercise 1: Build a backend API by using Azure Storage and the Web Apps feature of Azure App Service
-####Task 1: Open the Azure portal
+### Exercise 1: Build a backend API by using Azure Storage and the Web Apps feature of Azure App Service
+--------------------------------------------------------------------------------------------------------
+#### Task 1: Open the Azure portal
 On the taskbar, select the Microsoft Edge icon.
 
 In the browser window, browse to the Azure portal at https://portal.azure.com, and then sign in with the account you'll be using for this lab.
 
 Note: If this is your first time signing in to the Azure portal, you'll be offered a tour of the portal. If you prefer to skip the tour, select Maybe later to begin using the portal.
 
-####Task 2: Create a Storage account
+#### Task 2: Create a Storage account
 In the Azure portal, use the Search resources, services, and docs text box to search for Storage Accounts, and then in the list of results, select Storage Accounts.
 
 On the Storage accounts blade, select + Create.
