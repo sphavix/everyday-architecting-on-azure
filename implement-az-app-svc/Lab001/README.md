@@ -33,7 +33,7 @@ On the Create a storage account blade, on the ##### Basics tab, perform the foll
 |Subscription drop-down list |	Retain the default value.|
 
 |Resource group section 	   |  Select existing ManagedPlatform-lod56893793.|
-
+|----------------------------|----------------------------------------------|
 |Storage account name text   |  enter imgstor56893793 |
 box	
 
