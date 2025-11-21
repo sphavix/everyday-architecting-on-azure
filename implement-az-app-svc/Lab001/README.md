@@ -31,20 +31,20 @@ On the Create a storage account blade, on the ##### Basics tab, perform the foll
 Setting	                   |         Action
 ---------------------------|----------------------------------------------
 Subscription drop-down list|	Retain the default value
----------------------------|----------------------------------------------
+
 Resource group section 	   |  Select existing ManagedPlatform-lod56893793.
----------------------------|----------------------------------------------
+
 Storage account name text  |  enter imgstor56893793
 box	
----------------------------|---------------------------------------------
+
 Region drop-down list	     |  Select (US) East US
----------------------------|---------------------------------------------
+
 Primary service	           |  No changes
----------------------------|---------------------------------------------
+
 Performance section	       |  Select the Standard option
----------------------------|---------------------------------------------
+
 Redundancy drop-down list	 |  Select Locally-redundant storage (LRS)
----------------------------|---------------------------------------------
+
 
 The following screenshot displays the configured settings on the Basics tab of the Create a storage account blade.
 
