@@ -8,6 +8,9 @@ In order to complete this lab, you will need the following:
 #### Lab Scenario
 In this lab, you will explore how to create a web application on Azure by using the PaaS model. After the web application is created, you will learn how to upload existing web application files by using the Apache Kudu zip deployment option. You will then view and test the newly deployed web application.
 
+#### Achitecture Diagram
+![](https://github.com/sphavix/everyday-architecting-on-azure/blob/main/implement-az-app-svc/Lab001/Images/Lab01-Diagram.png)
+
 
 ### Exercise 1: Build a backend API by using Azure Storage and the Web Apps feature of Azure App Service
 --------------------------------------------------------------------------------------------------------
