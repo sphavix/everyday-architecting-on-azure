@@ -8,7 +8,7 @@ In order to complete this lab, you will need the following:
 #### Lab Scenario
 In this lab, you will explore how to create a web application on Azure by using the PaaS model. After the web application is created, you will learn how to upload existing web application files by using the Apache Kudu zip deployment option. You will then view and test the newly deployed web application.
 
-#### Achitecture Diagram
+#### Architecture Diagram
 ![](https://github.com/sphavix/everyday-architecting-on-azure/blob/main/implement-az-app-svc/Lab001/Images/Lab01-Diagram.png)
 
 
@@ -24,14 +24,20 @@ Note: If this is your first time signing in to the Azure portal, you'll be offer
 #### Task 2: Create a Storage account
 In the Azure portal, use the Search resources, services, and docs text box to search for Storage Accounts, and then in the list of results, select Storage Accounts.
 
-On the Storage accounts blade, select + Create.
+On the Storage accounts blade, ##### select + Create.
 
-On the Create a storage account blade, on the Basics tab, perform the following actions, and then select Review + create:
+On the Create a storage account blade, on the ##### Basics tab, perform the following actions, and then select ###### Review + create:
 
-Setting	Action
+Setting	                            Action
+---------------------------|-----------------------------------------
 Subscription drop-down list	Retain the default value
-Resource group section	Select existing ManagedPlatform-lod56893793.
+-----------------------|----------------------------------------------
+Instruction               Resource
+-----------------------|----------------------------------------------
+Resource group section |	Select existing ManagedPlatform-lod56893793.
+-----------------------|----------------------------------------------
 Storage account name text box	enter imgstor56893793
+
 Region drop-down list	Select (US) East US
 Primary service	No changes
 Performance section	Select the Standard option
