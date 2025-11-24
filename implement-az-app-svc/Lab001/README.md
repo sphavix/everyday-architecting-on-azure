@@ -5,7 +5,7 @@ In order to complete this lab, you will need the following:
 - Terminal
 - Visual Studio Code
 
-#### Lab Scenario
+### Lab Scenario
 In this lab, you will explore how to create a web application on Azure by using the PaaS model. After the web application is created, you will learn how to upload existing web application files by using the Apache Kudu zip deployment option. You will then view and test the newly deployed web application.
 
 #### Architecture Diagram
@@ -14,14 +14,14 @@ In this lab, you will explore how to create a web application on Azure by using 
 
 ### Exercise 1: Build a backend API by using Azure Storage and the Web Apps feature of Azure App Service
 --------------------------------------------------------------------------------------------------------
-#### Task 1: Open the Azure portal
+### Task 1: Open the Azure portal
 On the taskbar, select the Microsoft Edge icon.
 
 In the browser window, browse to the Azure portal at https://portal.azure.com, and then sign in with the account you'll be using for this lab.
 
 Note: If this is your first time signing in to the Azure portal, you'll be offered a tour of the portal. If you prefer to skip the tour, select Maybe later to begin using the portal.
 
-#### Task 2: Create a Storage account
+### Task 2: Create a Storage account
 1. In the Azure portal, use the Search resources, services, and docs text box to search for Storage Accounts, and then in the list of results, select Storage Accounts.
 
 2. On the **Storage accounts** blade, select **+ Create**.
@@ -30,13 +30,13 @@ Note: If this is your first time signing in to the Azure portal, you'll be offer
 
 |Setting	                   |         Action                             |
 |----------------------------|----------------------------------------------|
-|Subscription drop-down list |	Retain the default value.|
-|Resource group section 	   |  Select existing ManagedPlatform-lod56893793.|
-|Storage account name text box   |  enter imgstor56893793 |
-|Region drop-down list	     |  Select (US) East US |
-|Primary service	           |  No changes |
-|Performance section	       |  Select the Standard option |
-|Redundancy drop-down list	 |  Select Locally-redundant storage (LRS)|
+|**Subscription** drop-down list |	Retain the default value.|
+|**Resource group** section 	   |  Select existing **ManagedPlatform-lod56893793** or your own resource group name.|
+|**Storage account** name text box   |  enter **imgstor56893793** |
+|**Region** drop-down list	     |  Select **(US) East US** |
+|**Primary service**	           |  No changes |
+|**Performance** section	       |  Select the **Standard** option |
+|**Redundancy** drop-down list	 |  Select **Locally-redundant storage (LRS)**|
 
 
 4. On the **Review + create** tab, review the options that you selected during the previous steps.
@@ -55,7 +55,7 @@ Note: If this is your first time signing in to the Azure portal, you'll be offer
 
 9. Open Notepad, and then paste the copied connection string value to Notepad. You'll use this value later in this lab.
 
-#### Task 3: Upload a sample blob
+### Task 3: Upload a sample blob
 1. On the **Storage Account** blade, in the **Data storage** section, select the **Containers** link.
 
 2. On the **Containers** blade, select **+ Container**.
