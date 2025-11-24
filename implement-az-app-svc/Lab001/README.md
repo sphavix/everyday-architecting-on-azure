@@ -22,11 +22,11 @@ In the browser window, browse to the Azure portal at https://portal.azure.com, a
 Note: If this is your first time signing in to the Azure portal, you'll be offered a tour of the portal. If you prefer to skip the tour, select Maybe later to begin using the portal.
 
 #### Task 2: Create a Storage account
-In the Azure portal, use the Search resources, services, and docs text box to search for Storage Accounts, and then in the list of results, select Storage Accounts.
+1. In the Azure portal, use the Search resources, services, and docs text box to search for Storage Accounts, and then in the list of results, select Storage Accounts.
 
-On the Storage accounts blade, ##### select + Create.
+2. On the **Storage accounts** blade, select **+ Create**.
 
-On the Create a storage account blade, on the ##### Basics tab, perform the following actions, and then select ###### Review + create:
+3. On the **Create a storage account** blade, on the **Basics** tab, perform the following actions, and then select **Review + create**:
 
 |Setting	                   |         Action                             |
 |----------------------------|----------------------------------------------|
@@ -39,69 +39,71 @@ On the Create a storage account blade, on the ##### Basics tab, perform the foll
 |Redundancy drop-down list	 |  Select Locally-redundant storage (LRS)|
 
 
-The following screenshot displays the configured settings on the Basics tab of the Create a storage account blade.
+4. On the **Review + create** tab, review the options that you selected during the previous steps.
 
-Create a storage account blade
+5. Select **Create** to create the storage account by using your specified configuration.
 
-On the Review + create tab, review the options that you selected during the previous steps.
+**Note:** Wait for the creation task to complete before you proceed with this lab.
 
-Select Create to create the storage account by using your specified configuration.
+6. On the **Overview** blade, select the **Go to resource** button to navigate to the blade of the newly created storage account.
 
-Note: Wait for the creation task to complete before you proceed with this lab.
+7. On the **Storage account** blade, in the **Security + networking** section, select **Access keys**.
 
-On the Overview blade, select the Go to resource button to navigate to the blade of the newly created storage account.
+8. On the **Access keys** blade, review any one of the **Connection string** (using **Show** button), and then record the value of either **Connection string** boxes in Notepad. The **Keys** are platform managed encryption keys and are not used for this lab.
 
-On the Storage account blade, in the Security + networking section, select Access keys.
+**Note:** It doesn't matter which connection string you choose. They are interchangeable.
 
-On the Access keys blade, review any one of the Connection strings (using Show button), and then record the value of either Connection string boxes in Notepad. The Keys are platform managed encryption keys and are not used for this lab.
+9. Open Notepad, and then paste the copied connection string value to Notepad. You'll use this value later in this lab.
 
-Note: It doesn't matter which connection string you choose. They are interchangeable.
+#### Task 3: Upload a sample blob
+1. On the **Storage Account** blade, in the **Data storage** section, select the **Containers** link.
 
-Open Notepad, and then paste the copied connection string value to Notepad. You'll use this value later in this lab.
+2. On the **Containers** blade, select **+ Container**.
 
-Task 3: Upload a sample blob
-On the Storage Account blade, in the Data storage section, select the Containers link.
+3. In the **New container** window, perform the following actions, and then select **Create**.
 
-On the Containers blade, select + Container.
+|Setting	                |    Action        |
+|-------------------------|------------------|
+|Name text box	          |   enter images   |
 
-In the New container window, perform the following actions, and then select Create.
+4. On the **Containers** blade, navigate into the newly created **images** container.
 
-Setting	Action
-Name text box	enter images
-On the Containers blade, navigate into the newly created images container.
+5. On the **images** blade, select **Upload**.
 
-On the images blade, select Upload.
+6. In the **Upload blob** window, perform the following actions:
 
-In the Upload blob window, perform the following actions:
+|Setting	                                  |       Action                                                    |
+|-------------------------------------------|-----------------------------------------------------------------|
+|**Files** section	                        | Select Browse for files or use the drag and drop feature        |
+|**File Explorer** window	                  |Browse to cloned repo **C:\implement-az-app-svc\Lab001\Images**, select the **grilledcheese.jpg** file, and then select **Open**|
+|**Overwrite if files already exist** check box |	Ensure that the check box is selected, and then select **Upload**|
 
-Setting	Action
-Files section	Select Browse for files or use the drag and drop feature
-File Explorer window	Browse to Allfiles C:\Allfiles\Labs\01\Starter\Images, select the grilledcheese.jpg file, and then select Open
-Overwrite if files already exist check box	Ensure that the check box is selected, and then select Upload
-Note: Wait for the blob to upload before you continue with this lab.
+**Note:** Wait for the blob to upload before you continue with this lab.
 
-Task 4: Create a web app
-On the Azure portal's navigation pane, select Create a resource.
+#### Task 4: Create a web app
+1. On the Azure portal's navigation pane, select **Create a resource**.
 
-On the Create a resource blade, in the Search services and marketplace text box, enter Web App, and then select Enter.
+2. On the **Create a resource** blade, in the **Search services and marketplace** text box, enter **Web App**, and then select **Enter**.
 
-On the Marketplace search results blade, select the Web App result.
+3. On the **Marketplace** search results blade, select the **Web App** result.
 
-On the Web App blade, select Create.
+4. On the **Web App** blade, select **Create**.
 
-On the Create Web App blade, on the Basics tab, perform the following actions, and then select the Monitor + secure tab:
+5. On the **Create Web App** blade, on the **Basics** tab, perform the following actions, and then select the **Monitor + secure** tab:
 
-Setting	Action
-Subscription drop-down list	Retain the default value
-Resource group section	Select ManagedPlatform-lod56893793
-Name text box	enter imgapi56893793
-Secure unique default hostname	Disabled
-Publish section	Select Code
-Runtime stack drop-down list	Select .NET 8 (LTS)
-Operating System section	Select Windows
-Region drop-down list	Select the East US region
-Windows Plan (East US) section	Select Create new, enter the value ManagedPlan in the Name text box, and then select OK
-Pricing plan section	Select Standard S1
+|Setting	                                      |  Action        |
+|-----------------------------------------------|----------------|
+|**Subscription** drop-down list	                  |Retain the default value|
+|**Resource group** section	                        |Select **ManagedPlatform-lod56893793** or your resource group name|
+|**Name** text box	                                |enter **imgapi56893793**|
+|**Secure unique default hostname**	                |**Disabled**|
+|**Publish** section	                              |Select **Code**|
+|**Runtime stack** drop-down list	                  |Select **.NET 8 (LTS)**|
+|**Operating System** section	                      |Select **Windows**|
+|**Region** drop-down list	                        |Select the **East US** region|
+|**Windows Plan (East US)** section	                |Select **Create new**, enter the value **ManagedPlan** in the Name text box, and then select **OK**|
+|**Pricing plan** section	                          |Select **Standard S1**|
+
 The following screenshot displays the configured settings on the Create web app blade.
 
 Create web app blade
