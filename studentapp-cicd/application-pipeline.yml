@@ -1,0 +1,94 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: Build
+  displayName: 'Build Stage'
+  jobs:
+  - job: BuildJob
+    displayName: 'Build Job'
+    variables:
+      buildConfiguration: 'Release'
+    steps:
+    - task: UseDotNet@2
+      displayName: 'Use .NET SDK 8.x'
+      inputs:
+        packageType: 'sdk'
+        version: '8.x'
+        installationPath: $(Agent.ToolsDirectory)/dotnet
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Restore dependencies'
+      inputs:
+        command: 'restore'
+        projects: 'src/studentapp/studentapp.csproj'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Build project'
+      inputs:
+        command: 'build'
+        projects: 'src/studentapp/studentapp.csproj'
+        arguments: '--configuration $(buildConfiguration) --no-restore'
+
+- stage: Publish
+  displayName: 'Publish Stage'
+  dependsOn: Test
+  jobs:
+  - job: PublishJob
+    displayName: 'Publish Job'
+    variables:
+      buildConfiguration: 'Release'
+    steps:
+    - task: UseDotNet@2
+      displayName: 'Use .NET SDK 8.x'
+      inputs:
+        packageType: 'sdk'
+        version: '8.x'
+    - task: DotNetCoreCLI@2
+      displayName: 'Publish project'
+      inputs:
+        command: 'publish'
+        projects: 'src/studentapp/studentapp.csproj'
+        arguments: >
+          --configuration $(buildConfiguration)
+          --no-restore
+          --output $(Build.ArtifactStagingDirectory)
+          -p:BlazorEnableTimeZoneSupport=true
+          -p:PublishTrimmed=true
+          --self-contained false
+        zipAfterPublish: true
+        publishWebProjects: false
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish build artifacts'
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+
+- stage: Deploy
+  displayName: 'Deploy Stage'
+  dependsOn: Publish
+  jobs:
+  - deployment: DeployJob
+    displayName: 'Deploy Job'
+    environment: 'myWebAppEnvironment'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: DownloadBuildArtifacts@0
+            displayName: 'Download build artifacts'
+            inputs:
+              buildType: 'current'
+              downloadType: 'single'
+              artifactName: 'drop'
+              downloadPath: '$(Pipeline.Workspace)/studentapp-webapp'
+          - task: AzureWebApp@1
+            displayName: 'Deploy to Azure Web App'
+            inputs:
+              azureSubscription: 'BENJ-TEST-ADO'
+              appType: 'webApp'
+              appName: 'studentapp-webapp'
+              package: '$(Pipeline.Workspace)/drop/**/*.zip'
