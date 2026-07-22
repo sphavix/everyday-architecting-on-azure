@@ -1,0 +1,27 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '8.x'
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+- script: dotnet restore studentapp/studentapp.csproj --configuration Release
+  displayName: 'Build the project'
+- script: |
+    dotnet publish studentapp/studentapp.csproj
+    --configuration Release
+    --no-restore
+    --output $(Build.ArtifactStagingDirectory)
+    -p:PublishTrimmed=true
+    --self-contained false
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactsStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'container'
+  displayName: 'Publish Artifacts'
