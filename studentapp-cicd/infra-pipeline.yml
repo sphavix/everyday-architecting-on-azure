@@ -1,0 +1,75 @@
+---
+trigger:
+  - none
+pool:
+  vmImage: ubuntu-latest
+variables:
+  azureServiceConnection: StudApp-ServiceConnection
+  location: eastus
+  resourceGroupName: studentapp-rg
+  appServicePlanName: studentapp-asp
+  webAppName: studentapp-webapp
+  appInsightsName: studentapp-insights
+  templateFile: infra/main.bicep
+stages:
+  - stage: Validate
+    displayName: Validate Bicep Template
+    jobs:
+      - job: ValidateJob
+        displayName: Lint and Validate Bicep
+        steps:
+          - task: AzureCLI@2
+            inputs:
+              azureSubscription: $(azureServiceConnection)
+              scriptType: bash
+              scriptLocation: inLineScript
+              inLineScript: |
+                echo "Validating Bicep Template..."
+                az bicep build --file $(templateFile)
+                az deployment sub validate \
+                --location $(location) \
+                --template-file $(templateFile) \
+                --parameters resourceGroupName=$(resourceGroupName) \
+                --parameters appServicePlanName=$(appServicePlanName) \
+                --parameters webAppName=$(webAppName) \
+                --parameters appInsightsName=$(appInsightsName)
+
+  - stage: Deploy
+    displayName: Deploy Infrastructure
+    dependsOn: Validate
+    jobs:
+      - job: DeployJob
+        displayName: Deploy Bicep Template
+      - deployment: DeployAzureResources
+        displayName: Deploy Azure Resources
+        environment: TEST-ENV
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                  clean: true
+                  fetchDepth: 1
+                - script: |
+                    echo "Starting deployment..."
+                    echo "Deploying Bicep Template..."
+                    echo "---Deployment Workspace---"
+                    pwd
+                    ls -la
+                    ls -la infra/ || echo "infra directory not found"
+                  displayName: Pre-Deployment Checks
+                - task: AzureCLI@2
+                  inputs:
+                    azureSubscription: $(azureServiceConnection)
+                    scriptType: bash
+                    scriptLocation: inLineScript
+                    inLineScript: |
+                      echo "Starting deployment..."
+                      az deployment sub create \
+                      --location $(location) \
+                      --template-file $(templateFile) \
+                      --parameters resourceGroupName=$(resourceGroupName) \
+                                  appServicePlanName=$(appServicePlanName) \
+                                  webAppName=$(webAppName) \
+                                  appInsightsName=$(appInsightsName)
+                      --name "InfraDeployment-$(Build.BuildId)"
